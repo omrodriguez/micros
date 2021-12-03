@@ -1,0 +1,30 @@
+version: '3'
+service:configs:
+  video-storage:
+    image: video-storage
+    build:
+      context: ./videoStorage
+      dockerfile: Dockerfile
+    container_name: video-storage
+    ports:
+      - "4001:80"
+    environment:
+      - PORT=80
+      - COS_ENDPOINT=s3.us-south.cloud-object-storage.appdomain.cloud
+      - COS_API_KEY=n1wKTckCLTHiaLWehqBXbMUtNRxlCus0OfwOiFdY60vB
+      - COS_RESOURCE_INSTANCE_ID="crn:v1:bluemix:public:cloud-object-storage:global:a/78dc4cda231e4aa082be4b59dfa1d721:20b546cb-558d-479e-9d29-a238d5d8332d::"
+    restart: "no"
+  
+  video-streaming:
+    image: video-streaming
+    build:
+      context: ./videoStreaming
+      dockerfile: Dockerfile
+    container_name: video-streaming
+    ports:
+      - "4000:80"
+    environment:
+      - PORT=80
+      - SERVIDOR_VIDEO_STORAGE=video-storage
+      - PUERTO_VIDEO_STORAGE=80
+    restart: "no"
