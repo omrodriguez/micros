@@ -18,14 +18,14 @@ function startHttpServer(){
 }
 
 function main() {
-    console.log('Iniciando micro servicio history');
+    console.log('Iniciando micro servicio history modificado');
 
     return (startHttpServer());
 }
 
 main()
     .then(() => {
-        console.log("Microservicios History en línea"); })
+        console.log(`Microservicios History en línea en puerto ${process.env.PORT}`); })
     .catch(err => {
         console.error("Falló el inicio del microservicio History");
         console.error(err &&  err.stack || err);
