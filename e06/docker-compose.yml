@@ -1,5 +1,5 @@
 version: '3'
-service:configs:
+services:
   video-storage:
     image: video-storage
     build:
